@@ -9,49 +9,53 @@ import SwiftUI
 
 struct LobbyView: View {
     
-    var body: some View {
-        setupView
-    }
+    let color1 = Color(red: 0.894, green: 0.91, blue: 0.937)
+    let color2 = Color(red: 0.051, green: 0.439, blue: 0.761)
+    let color3 = Color(red: 0.596, green: 0.769, blue: 0.906)
     
-    private var setupView: some View {
-        NavigationStack {
-            HStack {
+    var body: some View {
+        NavigationStack{
+            HStack{
                 Spacer()
                 
                 NavigationLink {
-                    Text("Hello")
+                    CreateLobbyView()
                 } label: {
-                    HStack (spacing: 4) {
-                        Text("New lobby")
-                            .font(.system(size: 18))
-                            .fontWeight(.bold)
-                            .foregroundStyle(.black)
-                        Image(systemName: "plus")
-                            .foregroundStyle(.black)
-                    }
+                    newLobbyButton
                 }
-                .frame(width: 150, height: 32)
-                .background(Color(white: 0.90))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .padding(.top, 24)
-                .padding(.trailing, 24)
             }
-            
-            scrollView
-                .navigationTitle("Lobbies")
-                .toolbarBackground(Color(red: 0.596, green: 0.769, blue: 0.906), for: .navigationBar)
-                .toolbarBackground(.visible, for: .navigationBar)
+        
+        scrollView
+            .navigationTitle("Lobbies")
+            .toolbarBackground(color3, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
+    }
+    
+    private var newLobbyButton: some View {
+        HStack (spacing: 4) {
+            Text("New lobby")
+                .font(.system(size: 18))
+                .fontWeight(.bold)
+                .foregroundStyle(.black)
+            Image(systemName: "plus")
+                .foregroundStyle(.black)
+        }
+        .frame(width: 150, height: 32)
+        .background(Color(white: 0.90))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(.top, 24)
+        .padding(.trailing, 24)
     }
     
     private var scrollView: some View {
         ScrollView {
             VStack (spacing: 24) {
-                ForEach(lobbies, id: \.self) { lobby in
+                ForEach(lobbies, id: \.self) { lobby in // TODO: network integration
                     lobbyScrollViewCell(lobby)
                 }
                 .padding(16)
-                .background(Color(white: 0.90))
+                .background(color1)
                 .clipShape(RoundedRectangle(cornerRadius: 16))
             }
         }
@@ -74,10 +78,10 @@ struct LobbyView: View {
                 } label: {
                     Text("Join")
                         .padding(4)
-                        .frame(width: 64, height: 24)
+                        .frame(width: 64, height: 28)
                         .foregroundStyle(.white)
-                        .background(.blue)
-                        .clipShape(Capsule())
+                        .background(color2)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
             }
             
@@ -89,7 +93,7 @@ struct LobbyView: View {
                 
                 Spacer()
                 
-                Text("\(lobby.currentPeople)/\(lobby.maxPeople)")
+                Text("\(lobby.currentPeople.count)/\(lobby.maxPeople)")
                 Image(systemName: "person.fill")
             }
         }

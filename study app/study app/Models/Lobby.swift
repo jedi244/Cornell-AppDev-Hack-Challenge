@@ -11,12 +11,12 @@ struct Lobby: Hashable {
     let course: String
     let location: String
     let maxPeople: Int
-    let currentPeople: Int
+    let currentPeople: [String]
     let description: String
 }
 
 var lobbies = [
-    Lobby(course: "CS 2110", location: "Duffield Atrium", maxPeople: 5, currentPeople: 2, description: ""),
-    Lobby(course: "KOREA 1101", location: "RBG Lounge", maxPeople: 8, currentPeople: 1, description: ""),
-    Lobby(course: "CS 1998-601", location: "Gates Hall", maxPeople: 2, currentPeople: 2, description: "")
+    Lobby(course: "CS 2110", location: "Duffield Atrium", maxPeople: 5, currentPeople: ["Ashlie Zhang", "Jedi Lertviwatkul"], description: ""),
+    Lobby(course: "KOREA 1101", location: "RBG Lounge", maxPeople: 8, currentPeople: ["Joshua Yeung"], description: ""),
+    Lobby(course: "CS 1998-601", location: "Gates Hall", maxPeople: 2, currentPeople: ["Joshua Yeung", "Arnav Kaul"], description: "")
 ]
