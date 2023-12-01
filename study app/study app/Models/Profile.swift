@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Profile: Hashable {
+struct Profile: Hashable, Codable {
     let imageName: String
     let firstname: String
     let lastname: String

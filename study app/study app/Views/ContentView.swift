@@ -28,62 +28,66 @@ struct ContentView: View {
                 Color(color3)
                     .ignoresSafeArea()
                 
-                VStack {
-                    Spacer()
-                            .frame(height: 48)
-                    
-                    Text("Login")
-                        .font(.largeTitle)
-                        .bold()
-                    
-                    TextField("Username", text: $username)
-                        .padding(24)
-                        .frame(height: 48)
-                        .background(.black.opacity(0.05))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .border(.red, width: CGFloat(wrongUsername))
-                    
-                    Spacer()
-                            .frame(height: 16)
-                    
-                    SecureField("Password", text: $password)
-                        .padding(24)
-                        .frame(height: 48)
-                        .background(.black.opacity(0.05))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                        .border(.red, width: CGFloat(wrongPassword))
-                    
-                    Spacer()
-                            .frame(height: 16)
-                    
-                    Button("Login") {
-                        authenticateUser(username: self.username, password: self.password)
-                    }
-                    .padding(24)
-                    .foregroundStyle(.white)
-                    .frame(width: 150, height: 48)
-                    .background(color2)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .navigationDestination(isPresented: $showingLoginScreen) {
-                        tabView
-                            .navigationTitle("Forum")
-                            .navigationBarTitleDisplayMode(.large)
-                    }
-                    
-                    Spacer()
-                }
-                .padding(24)
-                .background(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .padding(24)
+                loginView
             }
         }
     }
     
     // MARK: Views
+    private var loginView: some View {
+        VStack {
+            Spacer()
+                    .frame(height: 48)
+            
+            Text("Login")
+                .font(.largeTitle)
+                .bold()
+            
+            TextField("Username", text: $username)
+                .padding(24)
+                .frame(height: 48)
+                .background(.black.opacity(0.05))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .border(.red, width: CGFloat(wrongUsername))
+            
+            Spacer()
+                    .frame(height: 16)
+            
+            SecureField("Password", text: $password)
+                .padding(24)
+                .frame(height: 48)
+                .background(.black.opacity(0.05))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .border(.red, width: CGFloat(wrongPassword))
+            
+            Spacer()
+                    .frame(height: 16)
+            
+            Button("Login") {
+                authenticateUser(username: self.username, password: self.password)
+            }
+            .padding(24)
+            .foregroundStyle(.white)
+            .frame(width: 150, height: 48)
+            .background(color2)
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .navigationDestination(isPresented: $showingLoginScreen) {
+                tabView
+                    .navigationTitle("Forum")
+                    .navigationBarTitleDisplayMode(.large)
+            }
+            
+            Spacer()
+        }
+        .padding(24)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .padding(24)
+    }
+    
     private var tabView: some View {
         TabView(selection: $currentTab) {
-            Text("Forum") // TODO: change
+            ForumView()
                 .tabItem {
                     Image(systemName: "message.fill")
                     Text("Forum")

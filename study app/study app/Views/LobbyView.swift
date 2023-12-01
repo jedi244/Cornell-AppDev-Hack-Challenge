@@ -10,7 +10,6 @@ import SwiftUI
 struct LobbyView: View {
     
     // MARK: Properties
-    @State private var selection: String? = ""
     @State var myLobbies: [Lobby] = lobbies
     
     let color1 = Color(red: 0.894, green: 0.910, blue: 0.937)
