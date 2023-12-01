@@ -11,6 +11,7 @@ struct LobbyView: View {
     
     // MARK: Properties
     @State private var selection: String? = ""
+    @State var myLobbies: [Lobby] = lobbies
     
     let color1 = Color(red: 0.894, green: 0.910, blue: 0.937)
     let color2 = Color(red: 0.051, green: 0.439, blue: 0.761)
@@ -23,7 +24,7 @@ struct LobbyView: View {
                 Spacer()
                 
                 NavigationLink{
-                    CreateLobbyView()
+                    CreateLobbyView(myLobbies: $myLobbies)
                 } label: {
                     newLobbyButton
                 }
@@ -54,7 +55,7 @@ struct LobbyView: View {
     private var scrollView: some View {
         ScrollView {
             VStack (spacing: 24) {
-                ForEach(lobbies, id: \.self) { lobby in // TODO: network integration
+                ForEach(myLobbies, id: \.self) { lobby in // TODO: network integration
                     lobbyScrollViewCell(lobby)
                 }
                 .padding(16)

@@ -13,8 +13,11 @@ struct CreateLobbyView: View {
     @Environment(\.dismiss) var dismiss
     @State private var course: String = ""
     @State private var location: String = ""
-    @State private var maxMembers: Int = 1
+    @State private var maxMembers: Int = 2
     @State private var description: String = ""
+    @Binding var myLobbies: [Lobby]
+    
+    let range: Range<Int> = 0..<51
     
     let color1 = Color(red: 0.894, green: 0.91, blue: 0.937)
     let color2 = Color(red: 0.051, green: 0.439, blue: 0.761)
@@ -84,7 +87,7 @@ struct CreateLobbyView: View {
                 Spacer(minLength: 20)
                 
                 Picker("", selection: $maxMembers, content: {
-                    ForEach(1..<51, content: { i in
+                    ForEach(range, content: { i in
                         Text(String(i))
                     })
                 })
@@ -115,7 +118,6 @@ struct CreateLobbyView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             .padding(.top, -48)
-                
         }
         .padding(24)
     }
@@ -136,13 +138,22 @@ struct CreateLobbyView: View {
 
     // MARK: Helper functions
     func createLobby() {
+        
+        guard !self.course.isEmpty &&
+                !self.location.isEmpty &&
+                self.maxMembers >= 2
+        else {
+            print("Required fields empty")
+            return
+        }
+        
         let lobby = Lobby(course: self.course, location: self.location, maxMembers: self.maxMembers, currentMembers: [], description: self.description)
         
-        lobbies.append(lobby) // TODO: network integration
+        myLobbies.append(lobby) // TODO: network integration
         
         self.course = ""
         self.location = ""
-        self.maxMembers = 1
+        self.maxMembers = 2
         self.description = ""
         
         dismiss()
@@ -150,5 +161,5 @@ struct CreateLobbyView: View {
 }
 
 #Preview {
-    CreateLobbyView()
+    CreateLobbyView(myLobbies: LobbyView().$myLobbies)
 }
