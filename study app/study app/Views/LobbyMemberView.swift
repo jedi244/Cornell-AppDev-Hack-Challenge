@@ -1,16 +1,14 @@
 //
-//  JoinLobbyView.swift
+//  LobbyMemberView.swift
 //  study app
 //
-//  Created by Jedi Lertviwatkul on 11/29/23.
+//  Created by Jedi Lertviwatkul on 11/30/23.
 //
 
 import SwiftUI
 
-struct JoinLobbyView: View {
-    
+struct LobbyMemberView: View {
     // MARK: Properties
-    
     private var lobby: Lobby
     
     let color1 = Color(red: 0.894, green: 0.910, blue: 0.937)
@@ -21,6 +19,7 @@ struct JoinLobbyView: View {
     init(lobby: Lobby) {
         self.lobby = lobby
     }
+    
     // MARK: Body
     var body: some View {
         NavigationStack {
@@ -29,18 +28,12 @@ struct JoinLobbyView: View {
                 
                 lobbyMembers
             }
-            .navigationTitle("Join lobby")
+            .navigationTitle("Current lobby")
             .toolbarBackground(color3, for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .padding(24)
             
-            // TODO: this should not navigate to the lobby member view it should go back to the lobbies view but display the current lobby instead
-            NavigationLink {
-                LobbyMemberView(lobby: lobby)
-            } label: {
-                joinLobbyButton
-            }
         }
     }
     
@@ -108,18 +101,21 @@ struct JoinLobbyView: View {
         }
     }
     
-    private var joinLobbyButton: some View {
-        Text("Join Lobby")
-            .font(.title2)
-            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-            .foregroundStyle(.white)
-            .padding(16)
-            .background(color2)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
-    }
-
+//    private var joinLobbyButton: some View {
+//        Button {
+//            
+//        } label: {
+//            Text("Join Lobby")
+//                .font(.title2)
+//                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+//                .foregroundStyle(.white)
+//                .padding(16)
+//                .background(color2)
+//                .clipShape(RoundedRectangle(cornerRadius: 16))
+//        }
+//    }
 }
 
 #Preview {
-    JoinLobbyView(lobby: lobbies[0]) // TODO: remove this
+    LobbyMemberView(lobby: lobbies[0]) // TODO: remove this
 }

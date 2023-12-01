@@ -9,15 +9,18 @@ import SwiftUI
 
 struct CreateLobbyView: View {
     
+    // MARK: Properties
+    @Environment(\.dismiss) var dismiss
     @State private var course: String = ""
     @State private var location: String = ""
-    @State private var maxPeople: Int = 1
+    @State private var maxMembers: Int = 1
     @State private var description: String = ""
     
     let color1 = Color(red: 0.894, green: 0.91, blue: 0.937)
     let color2 = Color(red: 0.051, green: 0.439, blue: 0.761)
     let color3 = Color(red: 0.596, green: 0.769, blue: 0.906)
     
+    // MARK: Body
     var body: some View {
         NavigationStack {
             VStack {
@@ -29,16 +32,12 @@ struct CreateLobbyView: View {
             .background(color1)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .padding(24)
-            
-            // TODO: Doesn't return to the lobbies view
-            NavigationLink {
-                LobbyView()
-            } label: {
-                createLobbyButton
-            }
+                
+            createLobbyButton
         }
     }
     
+    // MARK: Views
     private var lobbyDetails: some View {
         Group {
             HStack {
@@ -84,7 +83,7 @@ struct CreateLobbyView: View {
                 
                 Spacer(minLength: 20)
                 
-                Picker("", selection: $maxPeople, content: {
+                Picker("", selection: $maxMembers, content: {
                     ForEach(1..<51, content: { i in
                         Text(String(i))
                     })
@@ -123,16 +122,7 @@ struct CreateLobbyView: View {
     
     private var createLobbyButton: some View {
         Button {
-            let lobby = Lobby(course: self.course, location: self.location, maxPeople: self.maxPeople, currentPeople: ["You"], description: self.description)
-            
-            lobbies.append(lobby) // TODO: network integration
-            
-            //print(lobbies)
-            
-            self.course = ""
-            self.location = ""
-            self.maxPeople = 1
-            self.description = ""
+            createLobby()
         } label: {
             Text("Create Lobby")
                 .font(.title2)
@@ -144,6 +134,19 @@ struct CreateLobbyView: View {
         }
     }
 
+    // MARK: Helper functions
+    func createLobby() {
+        let lobby = Lobby(course: self.course, location: self.location, maxMembers: self.maxMembers, currentMembers: [], description: self.description)
+        
+        lobbies.append(lobby) // TODO: network integration
+        
+        self.course = ""
+        self.location = ""
+        self.maxMembers = 1
+        self.description = ""
+        
+        dismiss()
+    }
 }
 
 #Preview {

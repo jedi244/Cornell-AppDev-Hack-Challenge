@@ -9,29 +9,32 @@ import SwiftUI
 
 struct LobbyView: View {
     
-    let color1 = Color(red: 0.894, green: 0.91, blue: 0.937)
+    // MARK: Properties
+    @State private var selection: String? = ""
+    
+    let color1 = Color(red: 0.894, green: 0.910, blue: 0.937)
     let color2 = Color(red: 0.051, green: 0.439, blue: 0.761)
     let color3 = Color(red: 0.596, green: 0.769, blue: 0.906)
     
+    // MARK: Body
     var body: some View {
         NavigationStack{
             HStack{
                 Spacer()
                 
-                NavigationLink {
+                NavigationLink{
                     CreateLobbyView()
                 } label: {
                     newLobbyButton
                 }
+                
             }
         
         scrollView
-            .navigationTitle("Lobbies")
-            .toolbarBackground(color3, for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
         }
     }
     
+    // MARK: Views
     private var newLobbyButton: some View {
         HStack (spacing: 4) {
             Text("New lobby")
@@ -74,7 +77,7 @@ struct LobbyView: View {
                 Spacer()
                 
                 NavigationLink {
-                    Text("Hello")
+                    JoinLobbyView(lobby: lobby)
                 } label: {
                     Text("Join")
                         .padding(4)
@@ -93,7 +96,7 @@ struct LobbyView: View {
                 
                 Spacer()
                 
-                Text("\(lobby.currentPeople.count)/\(lobby.maxPeople)")
+                Text("\(lobby.currentMembers.count)/\(lobby.maxMembers)")
                 Image(systemName: "person.fill")
             }
         }

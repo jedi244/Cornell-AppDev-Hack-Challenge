@@ -19,6 +19,7 @@
 		D17453432B18251C003935A8 /* CreateLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17453422B18251C003935A8 /* CreateLobbyView.swift */; };
 		D17453452B183B49003935A8 /* JoinLobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17453442B183B49003935A8 /* JoinLobbyView.swift */; };
 		D17453472B18429A003935A8 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17453462B18429A003935A8 /* Profile.swift */; };
+		D17C53E42B1928F800138DCE /* LobbyMemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17C53E32B1928F800138DCE /* LobbyMemberView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D17453422B18251C003935A8 /* CreateLobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLobbyView.swift; sourceTree = "<group>"; };
 		D17453442B183B49003935A8 /* JoinLobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinLobbyView.swift; sourceTree = "<group>"; };
 		D17453462B18429A003935A8 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		D17C53E32B1928F800138DCE /* LobbyMemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyMemberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				D13124712B17EF94007354C0 /* LobbyView.swift */,
 				D17453422B18251C003935A8 /* CreateLobbyView.swift */,
 				D17453442B183B49003935A8 /* JoinLobbyView.swift */,
+				D17C53E32B1928F800138DCE /* LobbyMemberView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				D10D36942B0FCAFD00E77FAF /* ContentView.swift in Sources */,
 				D13124722B17EF94007354C0 /* LobbyView.swift in Sources */,
 				D10D36922B0FCAFD00E77FAF /* study_appApp.swift in Sources */,
+				D17C53E42B1928F800138DCE /* LobbyMemberView.swift in Sources */,
 				D17453472B18429A003935A8 /* Profile.swift in Sources */,
 				D131246F2B17EB60007354C0 /* Lobby.swift in Sources */,
 				D17453432B18251C003935A8 /* CreateLobbyView.swift in Sources */,
